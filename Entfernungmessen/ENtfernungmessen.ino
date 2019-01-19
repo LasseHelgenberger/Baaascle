@@ -1,4 +1,5 @@
 int zeit=0;
+long entfernung=0;
 void setup() {
   // put your setup code here, to run once:
   //pin 5 tricker schall losschicken
@@ -13,11 +14,11 @@ void loop() {
   digitalWrite(5,HIGH);
   delay(5);
   digitalWrite(5,LOW);
-  while(digitalRead(4)==LOW){
-      zeit=zeit+1;
-    }
-  Serial.print(zeit);
-  digitalWrite(5,LOW);
-  delay(5000);
+  zeit=pulseIn(4,HIGH);
+  entfernung=zeit/2*0.03432;
+  Serial.print("Entfernung:");
+  Serial.println(entfernung);
   zeit=0;
+  entfernung=0;
+  delay(1000);
 }
